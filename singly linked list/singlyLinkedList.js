@@ -83,9 +83,9 @@ class SinglyLinkedList {
     if (index === this.length) return !!this.push(val);
     if (index === 0) return !!this.unshift(val);
 
-    var newNode = new Node(val);
-    var prev = this.get(index - 1);
-    var temp = prev.next;
+    let newNode = new Node(val);
+    let prev = this.get(index - 1);
+    let temp = prev.next;
     prev.next = newNode;
     newNode.next = temp;
     this.length++;
@@ -95,19 +95,19 @@ class SinglyLinkedList {
     if (index < 0 || index >= this.length) return undefined;
     if (index === 0) return this.shift();
     if (index === this.length - 1) return this.pop();
-    var previousNode = this.get(index - 1);
-    var removed = previousNode.next;
+    let previousNode = this.get(index - 1);
+    let removed = previousNode.next;
     previousNode.next = removed.next;
     this.length--;
     return removed;
   }
   reverse() {
-    var node = this.head;
+    let node = this.head;
     this.head = this.tail;
     this.tail = node;
-    var next;
-    var prev = null;
-    for (var i = 0; i < this.length; i++) {
+    let next;
+    let prev = null;
+    for (let i = 0; i < this.length; i++) {
       next = node.next;
       node.next = prev;
       prev = node;
@@ -116,8 +116,8 @@ class SinglyLinkedList {
     return this;
   }
   print() {
-    var arr = [];
-    var current = this.head;
+    let arr = [];
+    let current = this.head;
     while (current) {
       arr.push(current.val);
       current = current.next;
