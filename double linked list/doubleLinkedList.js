@@ -12,6 +12,8 @@ class DoublyLinkedList {
     this.tail = null;
     this.length = 0;
   }
+
+  // add val to end
   push(val) {
     let newNode = new Node(val);
     if (this.length === 0) {
@@ -25,7 +27,60 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+
+  // remove end node
+  pop() {
+    if (this.length === 0) return null;
+    let poppedNode = this.tail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = poppedNode.prev;
+      this.tail.next = null;
+      poppedNode.prev = null;
+    }
+    this.length--;
+    return poppedNode;
+  }
+  // remove first value
+  shift() {
+    if (!this.head) return null;
+    let oldHead = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldHead.next;
+      this.head.prev = null;
+      oldHead.next = null;
+    }
+    this.length--;
+    return oldHead;
+  }
+
+  // add new val to front
+  unshift(val) {
+    let newNode = new Node(val);
+    let oldHead = this.head;
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head = newNode;
+      newNode.next = oldHead;
+      oldHead.prev = this.head;
+    }
+    this.length++;
+    return this;
+  }
+  // return node at index
+  get(index) {}
+
+  // set new value at index
+  set(index, val) {}
 }
+
 // let DoublyLinkedList = new DoublyLinkedList();
 
 // DoublyLinkedList.push("first");
@@ -36,6 +91,9 @@ list.push(99);
 list.push(100);
 
 list.push(101);
-list;
+list.push(102);
+const x = list.pop();
+console.log(x);
+
 // let newNode = new Node("first");
 // newNode;
