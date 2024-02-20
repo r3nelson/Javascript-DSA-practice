@@ -36,8 +36,26 @@ class BinarySearchTree {
     }
   }
 
-  // find val in BST
-  find(val) {}
+  // find node with val in BST
+  find(val) {
+    let current = this.root;
+    while (current) {
+      if (val === current.val) return current;
+      // go left
+      if (val < current.val) {
+        if (current.left === null) {
+          return undefined;
+        }
+        current = current.left;
+        // go right
+      } else {
+        if (current.right === null) {
+          return undefined;
+        }
+        current = current.right;
+      }
+    }
+  }
 
   // return if val in BST
   contains(val) {}
