@@ -58,5 +58,8 @@ class BinarySearchTree {
   }
 
   // return if val in BST
-  contains(val) {}
+  contains(val) {
+    if (this.find(val)) return true;
+    return false;
+  }
 }
