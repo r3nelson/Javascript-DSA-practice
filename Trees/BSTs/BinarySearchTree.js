@@ -89,4 +89,26 @@ class BinarySearchTree {
 
     traverse(this.root);
   }
+
+  PostDFS() {
+    const visited = [];
+
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      visited.push(node.val);
+    }
+    traverse(this.root);
+  }
+
+  InOrderDFS() {
+    const visited = [];
+
+    function traverse(node) {
+      if (node.left) traverse(node.left);
+      visited.push(node.val);
+      if (node.right) traverse(node.right);
+    }
+    traverse(this.root);
+  }
 }
