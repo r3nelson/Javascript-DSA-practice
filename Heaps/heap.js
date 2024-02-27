@@ -9,36 +9,34 @@ class BinaryHeap {
   }
 
   // swap array values
-  swap(num1, num2) {
-    const temp = num1;
-    num1 = num2;
-    num2 = temp;
-    return num1, num2;
+  swap(index1, index2) {
+    [this.values[index1], this.values[index2]] = [
+      this.values[index2],
+      this.values[index1],
+    ];
   }
 
   bubbleUp() {
     let index = this.values.length - 1;
-
+    const element = this.values[index];
     while (index > 0) {
       let parentIndex = Math.floor((index - 1) / 2);
       let parent = this.values[parentIndex];
-      let child = this.values[index];
 
-      if (child > parent) {
-        child, (parent = this.swap(child, parent));
-        index = parentIndex;
-      } else if (child === parent) {
-        console.log("duplicate value entered into values");
-        break;
-      }
+      if (element > parent) break;
+
+      this.swap(index, parentIndex);
+      index = parentIndex;
     }
   }
 
   extractMax() {
-    if (!this.heap.length) return;
+    if (!this.values.length) return;
+    const start = 0;
+    const end = this.values.length - 1;
 
-    this.swap(this.values[0], this.values[this.heap.length - 1]);
-    const oldNode = this.heap.pop();
+    this.swap(start, end);
+    const oldNode = this.values.pop();
 
     //trikle down
     let parent = 0,
@@ -46,18 +44,21 @@ class BinaryHeap {
       childRight = 2;
     //Math.max returns NaN is one of the arguments is undefined
     let max = Math.max(
-      this.heap[childLeft],
-      this.heap[childRight] || -Infinity
+      this.values[childLeft],
+      this.values[childRight] || -Infinity
     );
 
-    while (this.heap[parent] < max) {
-      let child = this.heap[childLeft] === max ? childLeft : childRight;
+    while (this.values[parent] < max) {
+      let child = this.values[childLeft] === max ? childLeft : childRight;
       this.swap(parent, child);
       parent = child;
 
       childLeft = parent * 2 + 1;
       childRight = parent * 2 + 2;
-      max = Math.max(this.heap[childLeft], this.heap[childRight] || -Infinity);
+      max = Math.max(
+        this.values[childLeft],
+        this.values[childRight] || -Infinity
+      );
     }
     return oldNode;
   }
